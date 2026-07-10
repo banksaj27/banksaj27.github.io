@@ -16,9 +16,8 @@
   - Add this file as   index.html   and commit.
   - Open   https://<your-username>.github.io
 
-  NOTE: Headings use Cormorant Garamond via Google Fonts. If that font is
-  blocked (e.g. in a sandboxed preview) it falls back to Georgia, which still
-  looks clean.
+  NOTE: Headings use Georgia (a system serif), so no external font load
+  is needed.
 -->
 <head>
   <meta charset="utf-8">
@@ -37,11 +36,6 @@
   <!-- Favicon: minimalist serif "ab" -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Ctext%20x='32'%20y='52'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-weight='600'%20font-size='46'%20fill='%231A1A1A'%3Eab%3C/text%3E%3C/svg%3E">
 
-  <!-- Heading serif -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
-
   <style>
     :root{
       color-scheme: light;
@@ -50,7 +44,7 @@
       --muted:#6b6b6b;      /* nudged darker than #999 so small text meets contrast */
       --faint:#999999;
       --divider:#E0E0E0;
-      --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --serif:Georgia, "Times New Roman", serif;
       --sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --mono:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
