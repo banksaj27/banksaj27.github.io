@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  Adam Banks - personal research homepage
+  ---------------------------------------
+  HOW TO EDIT
+  - Add or change papers in the PUBLICATIONS array in the <script> at the
+    bottom. Each item: { title, authors, venue, year, summary, links }.
+    Any link left as "" (empty) is hidden automatically; if a paper has an
+    arXiv/PDF link, its title becomes a link to it.
+  - Edit PROJECTS the same way.
+  - Fill in the TODO links (GitHub, Google Scholar, arXiv/PDF/code, OG image).
+
+  HOW TO DEPLOY (free, ~2 min)
+  - Create a PUBLIC GitHub repo named   <your-username>.github.io
+  - Add this file as   index.html   and commit.
+  - Open   https://<your-username>.github.io
+
+  NOTE: Headings use Cormorant Garamond via Google Fonts. If that font is
+  blocked (e.g. in a sandboxed preview) it falls back to Georgia, which still
+  looks clean.
+-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adam Banks</title>
+  <meta name="description" content="Adam Banks - undergraduate researcher at Stanford working on AI alignment, interpretability, and the theory of deep learning.">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adam Banks">
+  <meta property="og:description" content="Undergraduate researcher at Stanford working on AI alignment, interpretability, and the theory of deep learning.">
+  <!-- <meta property="og:url" content="TODO"> -->
+  <!-- <meta property="og:image" content="TODO"> -->
+  <meta name="twitter:card" content="summary">
+
+  <!-- Favicon: minimalist serif "ab" -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Ctext%20x='32'%20y='52'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-weight='600'%20font-size='46'%20fill='%231A1A1A'%3Eab%3C/text%3E%3C/svg%3E">
+
+  <!-- Heading serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      color-scheme: light;
+      --bg:#FAFAFA;
+      --ink:#1A1A1A;
+      --muted:#6b6b6b;      /* nudged darker than #999 so small text meets contrast */
+      --faint:#999999;
+      --divider:#E0E0E0;
+      --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    *{box-sizing:border-box;}
+    html{-webkit-text-size-adjust:100%;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:var(--sans);
+      font-size:18px;
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    .wrap{max-width:740px;margin:0 auto;padding:96px 24px;}
+
+    a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#c9c9c9;transition:text-decoration-color .15s ease;}
+    a:hover{text-decoration-color:var(--ink);}
+    a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px;}
+
+    /* Header */
+    .name{font-family:var(--serif);font-weight:600;font-size:clamp(40px,8vw,60px);line-height:1.05;letter-spacing:-.01em;margin:0 0 .4rem;}
+    .tagline{color:var(--muted);font-size:19px;max-width:52ch;margin:0 0 1.6rem;}
+    .links{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:15px;margin:0;padding:0;list-style:none;}
+    .links li{display:inline-flex;align-items:baseline;}
+    .links button{font:inherit;color:inherit;background:none;border:0;padding:0;margin-left:.5rem;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:#c9c9c9;}
+    .links button:hover{text-decoration-color:var(--ink);}
+    .copied{margin-left:.45rem;color:var(--muted);font-family:var(--mono);font-size:12px;}
+
+    hr{border:0;border-top:1px solid var(--divider);margin:0;}
+    .rule{margin:80px 0;}
+
+    .section-title{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.2;margin:0 0 1.75rem;}
+    .about p{margin:0;max-width:60ch;}
+
+    /* Entries (publications + projects) */
+    .entry{padding:28px 0;border-top:1px solid var(--divider);}
+    .entry:first-child{border-top:0;padding-top:0;}
+    .entry h3{font-size:19px;font-weight:600;line-height:1.4;margin:0 0 .25rem;}
+    .authors{margin:0 0 .35rem;font-size:16px;}
+    .authors .me{font-weight:600;}
+    .meta{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--muted);margin:0 0 .6rem;}
+    .summary{font-size:16px;color:#3a3a3a;margin:0 0 .65rem;max-width:64ch;}
+    .entry-links{display:flex;flex-wrap:wrap;gap:1rem;font-size:14px;margin:0;padding:0;list-style:none;}
+
+    footer{color:var(--muted);font-size:14px;}
+    footer .links{font-size:14px;margin-bottom:.8rem;}
+    .built{color:var(--faint);font-size:13px;margin:0;}
+
+    @media (max-width:640px){
+      .wrap{padding:64px 20px;}
+      .rule{margin:56px 0;}
+      body{font-size:17px;}
+    }
+    @media print{
+      body{background:#fff;color:#000;}
+      a{text-decoration:none;}
+      .wrap{padding:0;max-width:none;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1 class="name">Adam Banks</h1>
+      <p class="tagline">Undergraduate researcher at Stanford working on AI alignment, interpretability, and the theory of deep learning.</p>
+      <ul class="links">
+        <li><a href="mailto:banksaj@stanford.edu">banksaj@stanford.edu</a><button type="button" id="copy" aria-label="Copy email address">copy</button><span class="copied" id="copied" role="status" aria-live="polite"></span></li>
+        <li><a href="TODO-github-url">GitHub</a></li>
+        <li><a href="TODO-scholar-url">Google&nbsp;Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/abanksj/">LinkedIn</a></li>
+      </ul>
+    </header>
+
+    <hr class="rule">
+
+    <section class="about" aria-label="About">
+      <p>I&rsquo;m a computer science undergraduate at Stanford. I work on AI safety and alignment, mechanistic interpretability, reinforcement learning, and the theory of deep learning. Before Stanford I competed in olympiad mathematics &mdash; an AIME qualifier and an international MathLeague champion.</p>
+    </section>
+
+    <hr class="rule">
+
+    <section aria-label="Research">
+      <h2 class="section-title">Research</h2>
+      <div id="publications"></div>
+    </section>
+
+    <hr class="rule">
+
+    <section aria-label="Projects">
+      <h2 class="section-title">Projects</h2>
+      <div id="projects"></div>
+    </section>
+
+    <hr class="rule">
+
+    <footer>
+      <ul class="links">
+        <li><a href="mailto:banksaj@stanford.edu">Email</a></li>
+        <li><a href="TODO-github-url">GitHub</a></li>
+        <li><a href="TODO-scholar-url">Google&nbsp;Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/abanksj/">LinkedIn</a></li>
+      </ul>
+      <p class="built">&copy; 2026 Adam Banks &middot; Built with plain HTML &amp; CSS.</p>
+    </footer>
+  </div>
+
+  <script>
+    /* ============ EDIT YOUR PAPERS HERE ============ */
+    /* Leave any link as "" to hide it. A title links to arXiv/PDF if present. */
+    const PUBLICATIONS = [
+      {
+        title: "Subliminal Distillation Bypasses Unlearning",
+        authors: "Adam Banks",
+        venue: "Stanford CS338 · Aligning Superintelligence",
+        year: 2026,
+        summary: "Shows that same-initialization distillation can recover a behaviorally “unlearned” trait — so behavioral unlearning does not reliably remove it.",
+        links: { arxiv:"", pdf:"", code:"" }
+      },
+      {
+        title: "Reversing Emergent Misalignment Using Simple Self-Distillation",
+        authors: "Adam Banks, Justin Huang",
+        venue: "Stanford CS224R",
+        year: 2026,
+        summary: "A reward-free, on-policy self-distillation procedure partially reverses emergent misalignment; recovery is direction-specific rather than a generic effect of perturbation.",
+        links: { arxiv:"", pdf:"", code:"" }
+      },
+      {
+        title: "Lottery Tickets in Looped Transformers",
+        authors: "Adam Banks, Justin Huang, Nicole Wong",
+        venue: "Stanford CS229",
+        year: 2026,
+        summary: "Winning tickets exist in weight-tied looped transformers; pruning and looping compose cleanly, revealing a task-intrinsic parameter floor.",
+        links: { arxiv:"", pdf:"", code:"" }
+      },
+      {
+        title: "Scaling Test-Time Compute to Improve Formal Reasoning in Lean via Compiler Feedback",
+        authors: "Adam Banks, Alexander Huang",
+        venue: "Stanford CS224N",
+        year: 2026,
+        summary: "Uses Lean compiler feedback through test-time self-distillation and multi-turn correction to improve automated theorem proving.",
+        links: { arxiv:"", pdf:"", code:"" }
+      }
+    ];
+
+    /* ============ EDIT YOUR PROJECTS HERE ============ */
+    const PROJECTS = [
+      {
+        title: "Hackathons",
+        authors: "",
+        venue: "2 wins · 10 competitions",
+        year: "",
+        summary: "TODO: add the two winning projects, one line and a link each.",
+        links: { demo:"", code:"" }
+      },
+      {
+        title: "Game development",
+        authors: "",
+        venue: "itch.io",
+        year: "",
+        summary: "A portfolio of small games and experiments.",
+        links: { itch:"https://adam-banks.itch.io/" }
+      }
+    ];
+
+    function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+    function boldMe(a){return escapeHtml(a).replace("Adam Banks",'<span class="me">Adam Banks</span>');}
+    function renderMeta(venue,year){const p=[venue,year].filter(Boolean);return p.length?`<p class="meta">${escapeHtml(p.join(" · "))}</p>`:"";}
+    function renderLinks(links){
+      const labels={arxiv:"arXiv",pdf:"PDF",code:"code",demo:"demo",itch:"itch.io"};
+      const items=Object.entries(links||{}).filter(([,u])=>u).map(([k,u])=>`<li><a href="${escapeHtml(u)}">${labels[k]||escapeHtml(k)}</a></li>`);
+      return items.length?`<ul class="entry-links">${items.join("")}</ul>`:"";
+    }
+    function renderEntry(item){
+      const l=item.links||{};
+      const titleUrl=l.arxiv||l.pdf||l.itch||l.demo||l.code||"";
+      const title=titleUrl?`<a href="${escapeHtml(titleUrl)}">${escapeHtml(item.title)}</a>`:escapeHtml(item.title);
+      const authors=item.authors?`<p class="authors">${boldMe(item.authors)}</p>`:"";
+      const summary=item.summary?`<p class="summary">${escapeHtml(item.summary)}</p>`:"";
+      return `<article class="entry"><h3>${title}</h3>${authors}${renderMeta(item.venue,item.year)}${summary}${renderLinks(l)}</article>`;
+    }
+
+    document.getElementById("publications").innerHTML=PUBLICATIONS.map(renderEntry).join("");
+    document.getElementById("projects").innerHTML=PROJECTS.map(renderEntry).join("");
+
+    const copyBtn=document.getElementById("copy");
+    const copied=document.getElementById("copied");
+    copyBtn.addEventListener("click",async()=>{
+      try{await navigator.clipboard.writeText("banksaj@stanford.edu");copied.textContent="copied";setTimeout(()=>copied.textContent="",1600);}
+      catch(e){copied.textContent="banksaj@stanford.edu";}
+    });
+  </script>
+</body>
+</html>
