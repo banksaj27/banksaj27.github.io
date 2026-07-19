@@ -94,6 +94,7 @@
     .about p{margin:0;max-width:60ch;}
     .about-row{display:flex;gap:44px;align-items:flex-start;}
     .about-text{flex:1;min-width:0;}
+    .about-text p{white-space:pre-line;}
     .carousel{flex:0 0 auto;position:relative;}
     .carousel-frame{position:relative;width:300px;height:380px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.08) 4%,rgba(0,0,0,.4) 9%,rgba(0,0,0,.85) 14%,#000 18%,#000 75%,rgba(0,0,0,.85) 86%,rgba(0,0,0,.5) 91%,rgba(0,0,0,.15) 96%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.08) 4%,rgba(0,0,0,.4) 9%,rgba(0,0,0,.85) 14%,#000 18%,#000 75%,rgba(0,0,0,.85) 86%,rgba(0,0,0,.5) 91%,rgba(0,0,0,.15) 96%,rgba(0,0,0,0) 100%);}
     .carousel-frame img{position:absolute;top:-24px;left:0;width:100%;height:calc(100% + 48px);object-fit:cover;opacity:0;transform:translateY(-16px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1);}
@@ -179,7 +180,8 @@
       <div class="about-row">
         <div class="about-text">
           <h2 class="section-title reveal">About Me</h2>
-          <p>I&rsquo;m a 2nd year undergraduate at Stanford studying math and computer science. I work towards making AI safe, interpretable, and trustworthy through a rigorous understanding of how these systems work internally. Before Stanford, I competed in olympiad mathematics, competing in the AIME 3 times and winning the 2025 Mathleague.org National and International Championships.</p>
+          <p>I&rsquo;m a 2nd year undergraduate at Stanford studying math and computer science. I work towards making AI safe, interpretable, and trustworthy through a rigorous understanding of how these models work internally.
+            Before Stanford, I competed in olympiad mathematics, competing in the AIME 3 times and winning the 2025 Mathleague.org National and International Championships.</p>
         </div>
         <div class="carousel" id="carousel" aria-label="Portraits"></div>
       </div>
